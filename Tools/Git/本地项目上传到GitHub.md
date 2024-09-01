@@ -20,16 +20,23 @@ SSH和HTTPS的区别在于SSH需要配置SSH Key（无需账号密码验证）�
 
 ### 1.初始化
 
-初始化时，确保本地分支和远程仓库分支名称一致。如果远程仓库分支为main，初始化本地仓库，同时指定默认分支为main，与远程仓库的main保持一致。
+初始化时，确保本地分支和远程仓库分支名称一致。
 
 ```shell
-git init -b main
+git init
 ```
 
 ### 2.关联远程仓库
 
+如果使用`https`地址，需要先配置用户名和邮箱，`ssh`地址不需要配置，但需要配置`ssh key`
+
 ```shell
-git remote add origin 远程仓库地址
+git config --global user.name "username"
+git config --global user.email  useremail@qq.com
+```
+
+```shell
+git remote add origin 远程仓库地址(SSH/HTTPS)
 ```
 
 ### 3.拉取远程仓库文件到本地
@@ -54,5 +61,11 @@ git commit -am "提交时的描述信息，如提交了哪些内容"
 
 ```shell
 git push origin main
+```
+
+如果本地分支名和远程仓库分支名不一致，如远程分支`main`，本地分支`master`，修改本地分支名。
+
+```shell
+git branch -m master main   #master分支名改为main
 ```
 
