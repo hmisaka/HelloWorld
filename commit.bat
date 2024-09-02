@@ -1,5 +1,7 @@
 set -ex
+
+git pull origin master
 git add .
-git commit -m "$(date "+%Y-%m-%d-%H-%M")"
+git commit -am %date%
 git push origin master
 
