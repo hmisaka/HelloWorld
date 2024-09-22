@@ -2,5 +2,7 @@
 
 ## VSCode美化
 
-### 编程字体
+### 字体插件
+
+One Dark Pro
 
