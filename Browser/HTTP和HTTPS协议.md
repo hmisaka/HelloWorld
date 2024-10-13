@@ -6,4 +6,4 @@
 
 **HTTPS（超文本传输安全协议，Hypertext Transfer Protocol Secure）**是 HTTP 的安全版本，它在 HTTP 下增加了` SSL/TLS `协议，提供了数据加密、完整性校验和身份验证。HTTPS 通常使用端口 **`443`**。
 
-![image-20241014010310931](./assets/image-20241014010310931.png)
+![image-20241014010401181](./assets/image-20241014010401181.png)
