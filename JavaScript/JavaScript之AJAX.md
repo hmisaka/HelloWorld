@@ -4,11 +4,11 @@
 
 Ajax（Asynchronous Javascript And XML），即是异步的JavaScript和XML，使用`XMLHttpRequest`对象与服务器通信，也是浏览器与服务器之间的一种异步通信方式。由于具有异步特性，可以在不重刷新页面的情况下与服务器通信，交换数据或更新页面。
 
-## XMLHttpRequest
+## XHR
 
 操作步骤：
 
-1、创建`XMLHttpRequest`对象。2、配置请求方法和请求url地址。
+1、创建`XMLHttpRequest`对象，用于和服务器间交换数据。2、配置请求方法和请求url地址。
 
 3、监听loadend事件，用于接收服务器响应结果。4、向发起服务器请求。
 
@@ -32,6 +32,83 @@ const user = {username:'czs', password:'123456'};
 const userStr = JSON.stringify(user);
 //发送请求体数据
 xhr.send(userStr);
+```
+
+### 创建XMLHttpRequest 对象
+
+```js
+var xhr;
+if (window.XMLHttpRequest) {
+    xhr=new XMLHttpRequest();   //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+}
+else {
+    xhr=new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5 浏览器执行代码
+}
+```
+
+### xhr请求
+
+```js
+//向服务器发送请求
+xhr.open("GET","ajax_info.txt",true);
+xhr.send();
+/**
+ * open(method, url, async);  
+ *      method：get或post；url：文件在服务器上位置；async：true（异步）或false（同步）
+ * send(string);   string：仅用于post请求传递参数
+ */
+```
+
+**GET 还是POST？**
+
+通常GET请求相比POST请求，更简单更快。以下情况使用POST请求。
+
+- 不愿使用缓存文件（更新服务器上的文件或数据库）
+- 向服务器发送大量数据（POST 没有数据量限制）
+- 发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
+
+### xhr响应
+
+`responseText`    获得字符串形式的响应数据。
+
+`responseXML`      获得 XML 形式的响应数据。
+
+### onreadystatechange事件
+
+每当 readyState 改变时，就会触发 onreadystatechange 事件。
+
+| 属性               | 描述                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| onreadystatechange | 存储函数（或函数名），每当 readyState 属性改变时，就会调用该函数。 |
+| readyState         | 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化。0: 请求未初始化；1: 服务器连接已建立；2: 请求已接收3: 请求处理中；4: 请求已完成，且响应已就绪 |
+| status             | 200: "OK" 404: 未找到页面                                    |
+
+### 实例
+
+```js
+const xhr = new XMLHttpRequest();
+//get请求
+xhr.open("GET","/try/ajax/demo_get2.php?fname=Henry&lname=Ford",true);
+xhr.send();
+//post请求
+//传递给服务器的内容类型，是json字符串
+xhr.setRequestHeader('Content-Type', 'application/json'); 
+//对象转换为json字符串
+const user = {username:'czs', password:'123456'};
+const userStr = JSON.stringify(user);
+//发送请求体数据
+xhr.send(userStr);
+//获取响应结果 - 第一种
+xhr.addEventListener('loadend', ()=>{
+   //响应结果
+    console.log(xhr.response);
+});
+//获取响应结果 - 第二种
+xhr.onreadystatechange = function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+        document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+}
 ```
 
 ## Promise
@@ -97,8 +174,6 @@ request({
 }).then(res => {
     console.log(res);
 })
-
-
 ```
 
 
