@@ -69,3 +69,6 @@ git push origin main
 git branch -m master main   #master分支名改为main
 ```
 
+## 常见问题
+
+控制面板--用户账户--凭证管理器--普通凭证（添加github账户和密码）
