@@ -66,12 +66,6 @@ if([0]) console.log("exec"); //exec
 if(NaN) console.log("exec");
 ```
 
-## 每日一题
-
-```
-https://github.com/WindrunnerMax/EveryDay
-```
-
 ## 参考
 
 ```
