@@ -4,6 +4,29 @@
 
 Ajax（Asynchronous Javascript And XML），即是异步的JavaScript和XML，使用`XMLHttpRequest`对象与服务器通信，也是浏览器与服务器之间的一种异步通信方式。由于具有异步特性，可以在不重刷新页面的情况下与服务器通信，交换数据或更新页面。
 
+## 实现
+
+```js
+function ajax(url,method="GET", data=null, async=true) {
+  // 声明`XMLHttpRequest` // 在`IE5`和`IE6`中需要使用`ActiveX`对象
+  let XHR = XMLHttpRequest;
+  // 创建`XMLHttqRequest`对象
+  XHR = new XMLHttpRequest();
+  // 设置请求状态改变时执行的函数
+  XHR.onreadystatechange = function() {
+      // `XHR.responseText`为响应体
+      if (XHR.readyState === 4) console.log(`响应状态:${XHR.status}`, "FINISH");
+  }
+  // 初始化请求参数
+  XHR.open(method,url, async);
+  // 发起请求
+  XHR.send(data);
+}
+
+ajax("https://www.baidu.com");
+ajax("https://www.baidu.com", "POST", "A=1&B=2");
+```
+
 ## XHR
 
 操作步骤：

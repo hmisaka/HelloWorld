@@ -184,3 +184,7 @@ const age = 30;
 ## 使用
 
 能用`const`的情况尽量使用`const`，其他情况下大多数使用`let`，避免使用`var`
+
+## 参考
+
+>https://es6.ruanyifeng.com/#docs/let
